@@ -54,7 +54,10 @@ const Overlay = styled(DialogOverlay)`
   background-color: var(--color-backdrop);
   display: flex;
   justify-content: flex-end;
-  animation: 1000ms background-overlay;
+
+  @media (prefers-reduced-motion: no-preference) {
+    animation: 1000ms background-overlay;
+  }
 `;
 
 const Content = styled(DialogContent)`
@@ -79,15 +82,16 @@ const Content = styled(DialogContent)`
   background: white;
   perspective: 50px;
   transform-origin: center right;
-  /* width: 0px; */
   margin: auto 0;
   width: 300px;
   height: 100%;
   padding: 24px 32px;
   display: flex;
   flex-direction: column;
-  /* animation: 500ms slide-in forwards; */
-  animation: 750ms open-door forwards;
+
+  @media (prefers-reduced-motion: no-preference) {
+    animation: 750ms open-door forwards;
+  }
 `;
 
 const CloseButton = styled(UnstyledButton)`
@@ -110,7 +114,10 @@ const Nav = styled.nav`
   display: flex;
   flex-direction: column;
   gap: 16px;
-  animation: 500ms 100ms fade-in forwards;
+
+  @media (prefers-reduced-motion: no-preference) {
+    animation: 500ms 100ms fade-in forwards;
+  }
 `;
 
 const NavLink = styled.a`
@@ -135,7 +142,10 @@ const Footer = styled.footer`
   gap: 14px;
   justify-content: flex-end;
   opacity: 0;
-  animation: 500ms 100ms fade-in forwards;
+
+  @media (prefers-reduced-motion: no-preference) {
+    animation: 500ms 100ms fade-in forwards;
+  }
 `;
 
 const SubLink = styled.a`
