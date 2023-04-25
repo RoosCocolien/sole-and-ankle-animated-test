@@ -20,12 +20,31 @@ const Header = () => {
           <Logo />
         </LogoWrapper>
         <DesktopNav>
-          <NavLink href="/sale">Sale</NavLink>
-          <NavLink href="/new">New&nbsp;Releases</NavLink>
-          <NavLink href="/men">Men</NavLink>
-          <NavLink href="/women">Women</NavLink>
-          <NavLink href="/kids">Kids</NavLink>
-          <NavLink href="/collections">Collections</NavLink>
+          <NavLink href="/sale">
+            <DefaultLinkText>Sale</DefaultLinkText>
+            <BoldLinkText aria-hidden={true}>Sale</BoldLinkText>
+
+          </NavLink>
+          <NavLink href="/new">
+            <DefaultLinkText>New&nbsp;Releases</DefaultLinkText>
+            <BoldLinkText aria-hidden={true}>New&nbsp;Releases</BoldLinkText>
+          </NavLink>
+          <NavLink href="/men">
+            <DefaultLinkText>Men</DefaultLinkText>
+            <BoldLinkText aria-hidden={true}>Men</BoldLinkText>
+          </NavLink>
+          <NavLink href="/women">
+            <DefaultLinkText>Women</DefaultLinkText>
+            <BoldLinkText aria-hidden={true}>Women</BoldLinkText>
+          </NavLink>
+          <NavLink href="/kids">
+            <DefaultLinkText>Kids</DefaultLinkText>
+            <BoldLinkText aria-hidden={true}>Kids</BoldLinkText>
+          </NavLink>
+          <NavLink href="/collections">
+            <DefaultLinkText>Collections</DefaultLinkText>
+            <BoldLinkText aria-hidden={true}>Collections</BoldLinkText>
+          </NavLink>
         </DesktopNav>
         <MobileActions>
           <ShoppingBagButton>
@@ -114,16 +133,64 @@ const Filler = styled.div`
   }
 `;
 
+const DefaultLinkText = styled.span`
+  display: block;
+  transition: transform 500ms ease-out;
+`;
+
+const BoldLinkText = styled.span`
+  display: block;
+  position: absolute;
+  font-weight: ${WEIGHTS.bold};
+  transition: transform 250ms ease-in;
+`;
+
 const NavLink = styled.a`
+  display: inline-block;
+  position: relative;
   font-size: 1.125rem;
   text-transform: uppercase;
   text-decoration: none;
   color: var(--color-gray-900);
   font-weight: ${WEIGHTS.medium};
+  overflow: hidden;
+
+  &:hover span:nth-child(2) {
+    transform: translateY(-100%);
+  }
+  
+  &:hover span:nth-child(1) {
+    transform: translateY(-200%);
+  }
 
   &:first-of-type {
     color: var(--color-secondary);
   }
+
+  &::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    border-radius: 4px;
+    background-color: var(--color-gray-900);
+    bottom: 0;
+    left: 0;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform .3s ease-in-out;
+  }
+
+  &:first-of-type::before {
+    background-color: var(--color-secondary);
+  }
+
+  &:hover::before {
+    transform-origin: left;
+    transform: scaleX(1);
+  }
 `;
+
+
 
 export default Header;
