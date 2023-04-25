@@ -135,14 +135,18 @@ const Filler = styled.div`
 
 const DefaultLinkText = styled.span`
   display: block;
-  transition: transform 500ms ease-out;
+  @media (prefers-reduced-motion: no-preference) {
+    transition: transform 500ms ease-out;
+  }
 `;
 
 const BoldLinkText = styled.span`
   display: block;
   position: absolute;
   font-weight: ${WEIGHTS.bold};
-  transition: transform 250ms ease-in;
+  @media (prefers-reduced-motion: no-preference) {
+    transition: transform 250ms ease-in;
+  }
 `;
 
 const NavLink = styled.a`
@@ -178,7 +182,10 @@ const NavLink = styled.a`
     left: 0;
     transform-origin: right;
     transform: scaleX(0);
-    transition: transform .3s ease-in-out;
+
+    @media (prefers-reduced-motion: no-preference) {
+      transition: transform .3s ease-in-out;
+    }
   }
 
   &:first-of-type::before {

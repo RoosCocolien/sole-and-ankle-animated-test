@@ -71,29 +71,35 @@ const ShoeCard = ({
 const Link = styled.a`
   text-decoration: none;
   color: inherit;
-
-  &:hover img {
-    transform: scale(1.1);
-    filter: grayscale(0%);
-    transition: transform 250ms ease-in, filter 300ms ease-in;
-    transform-origin: 50% 60%;
-  }
-`;
+  `;
 
 const Wrapper = styled.article`
   position: relative;
-`;
+  `;
 
 const ImageWrapper = styled.div`
   border-radius: 16px 16px 4px 4px;
   overflow: hidden;
-`;
+  `;
 
 const Image = styled.img`
+  display: block;
   width: 100%;
   filter: grayscale(80%);
-  transition: transform 500ms ease-out, filter 500ms ease-out;
-  transform-origin: 50% 60%;
+  @media (prefers-reduced-motion: no-preference) {
+    transition: transform 500ms ease-out, filter 500ms ease-out;
+    transform-origin: 50% 70%;
+    will-change: transform; //it will be promoted to its own layer and keep it rendered on the GPU
+  }
+  
+  ${Link}:hover &, ${Link}:focus & {
+    filter: grayscale(0%);
+    @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+      transform: scale(1.1);
+      transition: transform 250ms ease-in, filter 300ms ease-in;
+      transform-origin: 50% 70%;
+    }
+  }
 `;
 
 const Row = styled.div`
