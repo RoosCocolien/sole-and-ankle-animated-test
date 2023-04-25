@@ -37,23 +37,57 @@ const MobileMenu = ({ isOpen, onDismiss }) => {
 };
 
 const Overlay = styled(DialogOverlay)`
+  @keyframes background-overlay {
+    from {
+      background-color: white;
+    }
+    to {
+      background-color: var(--color-backdrop);
+    }
+  }
+
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: var(--color-backdrop);
+  background-color: var(--color-backdrop);
   display: flex;
   justify-content: flex-end;
+  animation: 1000ms background-overlay;
 `;
 
 const Content = styled(DialogContent)`
+  @keyframes slide-in {
+    from {
+      width: 0px;
+    }
+    to {
+      width: 300px;
+    }
+  }
+
+  @keyframes open-door {
+    from {
+      transform: rotateY(90deg);
+    }
+    to {
+      transform: rotateY(0deg);
+    }
+  }
+
   background: white;
+  perspective: 50px;
+  transform-origin: center right;
+  /* width: 0px; */
+  margin: auto 0;
   width: 300px;
   height: 100%;
   padding: 24px 32px;
   display: flex;
   flex-direction: column;
+  /* animation: 500ms slide-in forwards; */
+  animation: 750ms open-door forwards;
 `;
 
 const CloseButton = styled(UnstyledButton)`
@@ -64,9 +98,19 @@ const CloseButton = styled(UnstyledButton)`
 `;
 
 const Nav = styled.nav`
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  opacity: 0;
   display: flex;
   flex-direction: column;
   gap: 16px;
+  animation: 500ms 100ms fade-in forwards;
 `;
 
 const NavLink = styled.a`
@@ -90,6 +134,8 @@ const Footer = styled.footer`
   flex-direction: column;
   gap: 14px;
   justify-content: flex-end;
+  opacity: 0;
+  animation: 500ms 100ms fade-in forwards;
 `;
 
 const SubLink = styled.a`
